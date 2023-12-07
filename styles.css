@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+#title-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    height: 100px; /* Set the height to fill the viewport */
+}
