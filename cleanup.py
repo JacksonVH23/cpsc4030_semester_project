@@ -1,5 +1,6 @@
 import pandas as pd
-import csv
+from collections import Counter
+import re
 
 # Description: Modifies the column names to better describe each attribute
 def columnNameCleanup(infile, outfile='column_name_cleaned_dataset.csv'):
@@ -251,8 +252,44 @@ def cleanAll(infile):
 
     return cleaned_dataset
 
+def getJobTitleKeywords(infile):
+    # Load the CSV file into a pandas DataFrame
+    df = pd.read_csv('cleaned_dataset.csv')
+
+    # Define a function to clean and tokenize the job titles
+    def clean_and_tokenize(job_title):
+        # Convert to lowercase and remove non-alphabetic characters
+        job_title = re.sub(r'[^a-zA-Z\s]', '', job_title.lower())
+        # Tokenize the job title
+        tokens = job_title.split()
+        # Exclude specific words ('Data' and 'Analyst')
+        tokens = [token for token in tokens if token not in ['data', 'analyst', 'and', 'with']]
+        return tokens
+
+    # Apply the cleaning and tokenization function to the 'Job Title' column
+    df['Cleaned Job Title'] = df['Job Title'].apply(clean_and_tokenize)
+
+    # Flatten the list of tokens into a single list
+    all_tokens = [token for sublist in df['Cleaned Job Title'] for token in sublist]
+
+    # Count the occurrences of each token
+    token_counts = Counter(all_tokens)
+
+    # Filter tokens that occur more than 20 times
+    common_tokens = {token: count for token, count in token_counts.items() if count > 15}
+
+    # Sort common_tokens by count in descending order
+    sorted_common_tokens = dict(sorted(common_tokens.items(), key=lambda item: item[1], reverse=True))
+
+    # Print the most commonly occurring words
+    i = 1
+    for token, count in sorted_common_tokens.items():
+        print(f'{i}) {token}: {count}')
+        i += 1
+
+# Description: Search for the most commonly occuring keywords in the 'Job Title' column
+
 if __name__ == "__main__":
 
-    infile = 'dataset.csv'
-    # cleanAll(infile)
-    cleanAll(infile)
+    infile = 'cleaned_dataset.csv'
+    getJobTitleKeywords(infile)

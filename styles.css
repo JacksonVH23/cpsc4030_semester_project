@@ -4,9 +4,62 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-#title-container {
+#container {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    height: 100px; /* Set the height to fill the viewport */
+    flex-direction: column;
+    height: 100vh; /* Use 100% of the viewport height */
+}
+
+#title-container {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 2px solid black;
+    font-family: 'Arial', sans-serif;
+    background-color: #a2d3c1;
+}
+
+#title-container h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+#visualization-1-container {
+    display: flex;
+    flex-grow: 1;
+    position: absolute; /* Set position to absolute */
+    top: 18px; /* Position at the top */
+    left: -18px; /* Position at the right */
+}
+
+#visualization-jobtitle-container {
+    flex-grow: 1;
+    position: relative;
+    margin-left: 25px;
+    margin-top: 30px;
+}
+
+#visualization-jobtitle-container svg {
+    display: flex;
+    border: 2px solid black;
+    background-color: rgb(230, 255, 230);
+}
+
+#jobTitletoggleButton {
+    position: absolute; /* Set position to absolute */
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    bottom: 8px; /* Adjust as needed */
+    left: 32px; /* Adjust as needed */
+    font-size: 10px; /* Set an initial font size */
+    font-weight: bold;
+    padding: 3px;
+}
+
+.highlighted-bar {
+    stroke: black;
+    stroke-width: 1px;
 }
