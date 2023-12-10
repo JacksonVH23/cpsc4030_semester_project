@@ -7,6 +7,10 @@ def columnNameCleanup(infile, outfile='column_name_cleaned_dataset.csv'):
     # Read the CSV file
     df = pd.read_csv(infile)
 
+    # Remove the "Easy Apply" and "Job Description" columns
+    columns_to_remove = ["Easy Apply", "Job Description", "Competitors"]
+    df = df.drop(columns=columns_to_remove, errors='ignore')
+
     df.columns = df.columns.str.replace('id', 'Unique ID', case=False)
     df.columns = df.columns.str.replace('Rating', 'Company Rating', case=False)
     df.columns = df.columns.str.replace('Location', 'Company Location', case=False)
@@ -190,6 +194,9 @@ def computeQualityScore(infile, outfile='score_cleaned_dataset.csv'):
     # Convert 'Salary Estimate' values to numeric
     df['Salary Estimate Number'] = convert_salary_to_numeric(df['Salary Estimate'])
 
+    # Convert 'Company Rating' values to numeric
+    df['Rating'] = pd.to_numeric(df['Rating'], errors='coerce')
+
     # Extract 'Salary Estimate' and 'Rating' columns
     salary_values = df['Salary Estimate Number']
     rating_values = df['Rating']
@@ -205,7 +212,7 @@ def computeQualityScore(infile, outfile='score_cleaned_dataset.csv'):
     rating_sum[rating_values == -1] = -1  # Assign -1 to the entries with no rating
 
     # Calculate the score using a weighted sum
-    overall_score = (0.7 * salary_sum + 0.3 * rating_sum)
+    overall_score = (0.4 * salary_sum + 0.6 * rating_sum)
     overall_score[rating_sum == -1] = salary_sum
 
     # Normalize to a scale of 0-10
@@ -220,7 +227,7 @@ def computeQualityScore(infile, outfile='score_cleaned_dataset.csv'):
 
     df.to_csv(outfile, index=False)
 
-    return outfile  
+    return outfile
 
 # Description: Replaces any value that equals -1 with 'Unknown', as that is what -1 represents in this case
 def replace_negative_one(infile, outfile='negative_cleaned_dataset'):
@@ -287,9 +294,38 @@ def getJobTitleKeywords(infile):
         print(f'{i}) {token}: {count}')
         i += 1
 
+def getSectorKeywords(infile):
+    # Load the CSV file into a pandas DataFrame
+    df = pd.read_csv(infile)
+
+    # Define a function to clean and tokenize the sector names
+    def clean_and_tokenize(sector):
+        # Convert to lowercase and remove non-alphabetic characters
+        sector = re.sub(r'[^a-zA-Z\s]', '', sector.lower())
+        return sector
+
+    # Apply the cleaning and tokenization function to the 'Sector' column
+    df['Cleaned Sector'] = df['Sector'].apply(clean_and_tokenize)
+
+    # Count the occurrences of each sector
+    sector_counts = Counter(df['Cleaned Sector'])
+
+    # Filter sectors that occur more than a certain threshold (adjust as needed)
+    threshold = 15
+    common_sectors = {sector: count for sector, count in sector_counts.items() if count > threshold}
+
+    # Sort common_sectors by count in descending order
+    sorted_common_sectors = dict(sorted(common_sectors.items(), key=lambda item: item[1], reverse=True))
+
+    # Print the most commonly occurring sectors
+    i = 1
+    for sector, count in sorted_common_sectors.items():
+        print(f'{i}) {sector}: {count}')
+        i += 1
+
 # Description: Search for the most commonly occuring keywords in the 'Job Title' column
 
 if __name__ == "__main__":
 
-    infile = 'cleaned_dataset.csv'
-    getJobTitleKeywords(infile)
+    infile = 'dataset.csv'
+    cleanAll(infile)

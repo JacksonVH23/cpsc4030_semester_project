@@ -11,13 +11,31 @@
     <div id="container">
         <div id="title-container">
             <h1>Jobs in Data Science</h1>
+            <button id="detailsButton">Details</button>
+            <div id="detailsBox" style="display: none;"></div>
         </div>
         <div id="visualization-1-container">
             <div id="visualization-jobtitle-container"></div>
-            <button id="jobTitletoggleButton">Expand Visualization</button>
+            <button id="jobTitleToggleButton">Expand Visualization</button>
+        </div>
+        <div id="visualization-2-container">
+            <div id="visualization-numOfEmployees-container"></div>
+            <button id="numOfEmployeesToggleButton">Expand Visualization</button>
+        </div>
+        <div id="visualization-3-container">
+            <div id="visualization-map-container"></div>
         </div>
     </div>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="script.js"></script>
+    <script src="JobTitle.js"></script>
+    <script src="NumOfEmployees.js"></script>
+    <script src="Map.js"></script>
+    <script>
+        document.getElementById('detailsButton').addEventListener('click', function() {
+            var detailsBox = document.getElementById('detailsBox');
+            detailsBox.style.display = detailsBox.style.display === 'none' ? 'block' : 'none';
+            detailsBox.innerHTML = '<p>Data was sourced from 2253 job listing scraped from Glassdoor.com<br><br>Quality Score was calculated using a weighted sum of Salary Estimate and Company Rating (0.4, 0.6)</p>';
+        });
+    </script>
 </body>
 </html>

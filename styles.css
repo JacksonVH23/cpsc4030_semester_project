@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
+    background-color:#808080;
 }
 
 #container {
@@ -12,10 +13,38 @@ body {
 
 #title-container {
     text-align: center;
-    padding: 5px;
+    padding: 3px;
     border-bottom: 2px solid black;
     font-family: 'Arial', sans-serif;
-    background-color: #a2d3c1;
+    color: #DCDCDC;
+    background-color: #006A4E;
+}
+
+#detailsButton {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+}
+
+#detailsBox {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background-color: #00563B;
+    border: 1px solid black;
+    width: 180px;
+    padding-left: 10px;
+    padding-right: 8px;
+    text-align: left;
+    z-index: 3;
+    font-size: 11px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #title-container h1 {
@@ -29,23 +58,23 @@ body {
     flex-grow: 1;
     position: absolute; /* Set position to absolute */
     top: 18px; /* Position at the top */
-    left: -18px; /* Position at the right */
+    left: 10px; /* Position at the right */
 }
 
 #visualization-jobtitle-container {
     flex-grow: 1;
     position: relative;
     margin-left: 25px;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 #visualization-jobtitle-container svg {
     display: flex;
     border: 2px solid black;
-    background-color: rgb(230, 255, 230);
+    background-color: #018749;
 }
 
-#jobTitletoggleButton {
+#jobTitleToggleButton {
     position: absolute; /* Set position to absolute */
     background-color: #04AA6D; /* Green */
     border: none;
@@ -59,7 +88,80 @@ body {
     padding: 3px;
 }
 
+#visualization-2-container {
+    display: flex;
+    flex-grow: 1;
+    position: absolute; /* Set position to absolute */
+    bottom: 8px; /* Position at the bottom */
+    left: 10px; /* Position at the left */
+}
+
+#visualization-numOfEmployees-container {
+    flex-grow: 1;
+    position: relative;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+#visualization-numOfEmployees-container svg {
+    display: flex;
+    border: 2px solid black;
+    background-color: #018749;
+}
+
+#numOfEmployeesToggleButton {
+    position: absolute;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    bottom: 8px;
+    left: 32px;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px;
+}
+
+#visualization-3-container {
+    display: flex;
+    flex-grow: 1;
+    position: absolute; /* Set position to absolute */
+    top: 43px; /* Position at the top */
+    right: 30px; /* Position at the right */
+}
+
+#visualization-map-container {
+    flex-grow: 1;
+    position: relative;
+    margin-left: 5px;
+}
+
+#visualization-map-container svg {
+    display: flex;
+    border: 2px solid black;
+    background-color: #018749;
+}
+
+#numOfEmployeesToggleButton:hover {
+    border: 1px solid black; /* Add a black border on hover */
+    padding: 2px;
+}
+
+#jobTitleToggleButton:hover {
+    border: 1px solid black; /* Add a black border on hover */
+    padding: 2px;
+}
+
+#detailsButton:hover {
+    border: 1px solid black; /* Add a black border on hover */
+}
+
 .highlighted-bar {
     stroke: black;
     stroke-width: 1px;
+}
+
+.highlighted-button {
+    border: 1px solid black;
 }
