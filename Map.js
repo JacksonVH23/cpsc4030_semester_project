@@ -29,9 +29,6 @@
             // Sort the array based on the count in descending order
             stateCountsArray.sort((a, b) => b.count - a.count);
 
-            // Log the sorted array to the console
-            console.log(stateCountsArray);
-
             // Create the graph
             // Update the margins based on the state (expanded or collapsed)
             const margin = { top: originalHeight / 7, right: originalWidth / 20, bottom: originalHeight / 5.8, left: originalWidth / 10 }
@@ -237,7 +234,7 @@
                     .attr("fill", "#a9a9a9");  // Grey color
 
                 // Calculate the x-coordinate to center the first line
-                const firstLineX = (maxLineWidth - firstlineWidth) / 3 + 13;
+                const firstLineX = (maxLineWidth - firstlineWidth) / 3 + (55 / (firstlineWidth / 9));
 
                 // Append text elements for each line
                 tooltip.selectAll(".tooltip-text")
@@ -253,7 +250,7 @@
             }
 
             function handleMouseMove(d, i) {
-                // Get the existing tooltip
+                // Get the existing tooltip 
                 const tooltip = svg.select(".tooltip");
 
                 if (!tooltip.empty()) {
@@ -300,4 +297,4 @@
     const originalWidth = originalHeight*1.35;
     createMapVisualization(originalWidth, originalHeight, false);
 
-    })();
+})();

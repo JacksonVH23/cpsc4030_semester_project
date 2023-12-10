@@ -24,6 +24,7 @@ body {
     position: absolute;
     top: 8px;
     right: 10px;
+    padding-top: 2px;
     background-color: #04AA6D; /* Green */
     border: none;
     color: white;
@@ -144,17 +145,61 @@ body {
 }
 
 #numOfEmployeesToggleButton:hover {
-    border: 1px solid black; /* Add a black border on hover */
-    padding: 2px;
+    background-color: #046647;
 }
 
 #jobTitleToggleButton:hover {
-    border: 1px solid black; /* Add a black border on hover */
-    padding: 2px;
+    background-color: #046647;
 }
 
 #detailsButton:hover {
-    border: 1px solid black; /* Add a black border on hover */
+    background-color: #00563B;
+}
+
+#dropdown {
+    position: absolute;
+    z-index: 3;
+    top: 31px;
+    left: 145px;
+}
+
+#dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 4px;
+    font-size: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#dropdown-content {
+    display: none;
+    min-width: 70px;
+    background-color: #00563B;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#dropdown-content a {
+    color: #DCDCDC;
+    padding: 2px;
+    text-decoration: none;
+    font-size: 8px;
+    display: block;
+}
+
+#dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color:  black;
+}
+
+#dropdown:hover #dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #046647;
 }
 
 .highlighted-bar {
