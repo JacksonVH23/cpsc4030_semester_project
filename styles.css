@@ -32,6 +32,18 @@ body {
     display: inline-block;
 }
 
+#demoButton {
+    position: absolute;
+    top: 8px;
+    right: 80px;
+    padding-top: 2px;
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+}
+
 #detailsBox {
     display: none;
     position: absolute;
@@ -153,6 +165,10 @@ body {
 }
 
 #detailsButton:hover {
+    background-color: #00563B;
+}
+
+#demoButton:hover {
     background-color: #00563B;
 }
 

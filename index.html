@@ -12,6 +12,13 @@
         <div id="title-container">
             <h1>Jobs in Data Science</h1>
             <button id="detailsButton">Details</button>
+            <button id="demoButton">Demo Video</button>
+            <script>
+                document.getElementById("demoButton").addEventListener("click", function() {
+                    var videoUrl = "https://www.youtube.com/watch?v=uGYn4Ls99q0";
+                    window.open(videoUrl, "_blank");
+                });
+                </script>
             <div id="detailsBox" style="display: none;"></div>
         </div>
         <div id="visualization-1-container">
