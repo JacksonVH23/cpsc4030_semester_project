@@ -890,18 +890,29 @@ document.getElementById('jobTitleToggleButton').addEventListener('click', functi
 document.getElementById('option1').addEventListener('click', function () {
     // Switch to job title visualization
     if(isOption2) {
-        d3.select("#visualization-jobtitle-container").select("svg").remove();
-        createJobTitleVisualization(originalWidth, originalHeight, isVisualizationExpanded);
-        isOption2 = false;
+        if(isVisualizationExpanded == true) {
+            d3.select("#visualization-jobtitle-container").select("svg").remove();
+            createJobTitleVisualization(originalWidth*1.4, originalHeight*1.4, isVisualizationExpanded);
+            isOption2 = false;
+        } else {
+            d3.select("#visualization-jobtitle-container").select("svg").remove();
+            createJobTitleVisualization(originalWidth, originalHeight, isVisualizationExpanded);
+            isOption2 = false;
+        }
     }
-});
+}); 
 
 document.getElementById('option2').addEventListener('click', function () {
     if(!isOption2) {
-        // Switch to company industry visualization
-        d3.select("#visualization-jobtitle-container").select("svg").remove();
-        createIndustryVisualization(originalWidth, originalHeight, isVisualizationExpanded);
-        isOption2 = true;
+        if(isVisualizationExpanded == true) {
+            d3.select("#visualization-jobtitle-container").select("svg").remove();
+            createIndustryVisualization(originalWidth*1.4, originalHeight*1.4, isVisualizationExpanded);
+            isOption2 = true;
+        } else {
+            d3.select("#visualization-jobtitle-container").select("svg").remove();
+            createIndustryVisualization(originalWidth, originalHeight, isVisualizationExpanded);
+            isOption2 = true;
+        }
     }
 });
 
