@@ -204,7 +204,7 @@
 
                 // Function to handle mouseover event
                 function handleMouseOver(d, i) {
-                    const info = `Median: ${median.toFixed(2)}\n1st Quartile: ${q1.toFixed(2)}\nThird Quartile: ${q3.toFixed(2)}\nMinimum: ${min.toFixed(2)}\nMaximum: ${max.toFixed(2)}`;
+                    const info = `Median: ${median.toFixed(2)}\n1st Quartile: ${q1.toFixed(2)}\n3rd Quartile: ${q3.toFixed(2)}\nMinimum: ${min.toFixed(2)}\nMaximum: ${max.toFixed(2)}`;
 
                     // Get the position of the current box element
                     const boxPosition = this.getBoundingClientRect();
